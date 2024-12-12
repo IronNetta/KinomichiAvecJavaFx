@@ -1,5 +1,6 @@
 package FX;
 
+import inscription.Inscription;
 import inscription.InscriptionController;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -10,7 +11,7 @@ import personne.Personne;
 
 public class FormulaireAjout {
 
-    public static void afficher(Stage parentStage, InscriptionController controller) {
+    public static Stage afficher(Stage parentStage, InscriptionController controller) {
         // Création de la fenêtre
         Stage stage = new Stage();
         stage.initModality(Modality.WINDOW_MODAL);
@@ -65,5 +66,6 @@ public class FormulaireAjout {
         Scene scene = new Scene(root, 300, 250);
         stage.setScene(scene);
         stage.show();
+        return stage;
     }
 }

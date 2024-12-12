@@ -1,5 +1,6 @@
 package FX;
 
+import inscription.Inscription;
 import inscription.InscriptionController;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -12,13 +13,7 @@ import personne.Personne;
 import java.util.List;
 
 public class FormulaireSuppression {
-    public static void afficher(Stage parentStage, InscriptionController controller) {
-        // Vérifiez que le contrôleur est valide
-        if (controller == null) {
-            Alert alert = new Alert(Alert.AlertType.ERROR, "Le contrôleur est null. Impossible de continuer.");
-            alert.showAndWait();
-            return;
-        }
+    public static Stage afficher(Stage parentStage, InscriptionController controller) {
 
         Stage stage = new Stage();
         stage.initModality(Modality.WINDOW_MODAL);
@@ -30,7 +25,6 @@ public class FormulaireSuppression {
         if (eleves.isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION, "Aucun élève à supprimer.");
             alert.showAndWait();
-            return;
         }
 
         // Liste déroulante pour sélectionner un élève par nom
@@ -67,6 +61,7 @@ public class FormulaireSuppression {
         Scene scene = new Scene(root, 300, 200);
         stage.setScene(scene);
         stage.show();
+        return stage;
     }
 }
 

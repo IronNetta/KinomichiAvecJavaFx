@@ -134,6 +134,7 @@ public class InscriptionController {
         String nom = view.lireNom();
         Personne eleve = model.rechercherEleve(e -> e.getNom().equalsIgnoreCase(nom));
         if (eleve != null) {
+            view.afficherMessage("Êtes-vous sûr?");
             model.supprimerEleve(eleve);
             view.afficherMessage("Élève supprimé avec succès.");
         } else {

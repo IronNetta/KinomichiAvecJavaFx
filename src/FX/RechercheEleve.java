@@ -1,6 +1,5 @@
 package FX;
 
-import inscription.Inscription;
 import inscription.InscriptionController;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -11,21 +10,26 @@ import personne.Personne;
 
 import java.util.List;
 
-public class FormulaireModification {
-    public static Stage afficher(Stage parentStage, InscriptionController controller) {
+public class RechercheEleve {
+    public static void afficher(Stage parentStage, InscriptionController controller) {
         // Vérifiez que le contrôleur est valide
+        if (controller == null) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Le contrôleur est null. Impossible de continuer.");
+            alert.showAndWait();
+            return;
+        }
 
-        // Création de la fenêtre
         Stage stage = new Stage();
         stage.initModality(Modality.WINDOW_MODAL);
         stage.initOwner(parentStage);
-        stage.setTitle("Modifier une inscription");
+        stage.setTitle("Supprimer un élève inscrit");
 
-        // Récupérer la liste des élèves pour sélection
+        // Récupérer la liste des élèves
         List<Personne> eleves = controller.model.listerEleves();
         if (eleves.isEmpty()) {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Aucun élève à modifier.");
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Aucun élève à supprimer.");
             alert.showAndWait();
+            return;
         }
 
         // Liste déroulante pour sélectionner un élève
@@ -48,7 +52,6 @@ public class FormulaireModification {
 
         CheckBox chkPaiement = new CheckBox("Paiement en cours");
 
-        // Pré-remplir les champs lorsqu'un élève est sélectionné
         comboBox.setOnAction(event -> {
             Personne eleveSelectionne = comboBox.getValue();
             if (eleveSelectionne != null) {
@@ -60,50 +63,21 @@ public class FormulaireModification {
             }
         });
 
-        // Bouton de soumission
-        Button btnSubmit = new Button("Modifier");
-        btnSubmit.setOnAction(event -> {
-            Personne eleveSelectionne = comboBox.getValue();
-            if (eleveSelectionne == null) {
-                Alert alert = new Alert(Alert.AlertType.WARNING, "Veuillez sélectionner un élève à modifier.");
-                alert.showAndWait();
-                return;
-            }
-
-            // Mise à jour des informations de l'élève
-            eleveSelectionne.setNom(txtNom.getText());
-            eleveSelectionne.setPrenom(txtPrenom.getText());
-            eleveSelectionne.setClub(txtClub.getText());
-            eleveSelectionne.setMail(txtEmail.getText());
-            eleveSelectionne.setPayemmentEnCours(chkPaiement.isSelected());
-
-            // Sauvegarde via le contrôleur
-            controller.model.sauvegarder();
-
-            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Élève modifié avec succès !");
-            alert.showAndWait();
-
-            // Fermer la fenêtre
-            stage.close();
-        });
-
         // Layout principal
         VBox root = new VBox(10);
         root.getChildren().addAll(
-                new Label("Modifier une inscription"),
+                new Label("Charcher un élève"),
                 comboBox,
                 txtNom,
                 txtPrenom,
                 txtClub,
                 txtEmail,
-                chkPaiement,
-                btnSubmit
+                chkPaiement
         );
 
         // Configuration de la scène
-        Scene scene = new Scene(root, 300, 400);
+        Scene scene = new Scene(root, 300, 200);
         stage.setScene(scene);
         stage.show();
-        return stage;
     }
 }
