@@ -7,7 +7,7 @@ import personne.Personne;
 
 public class InscriptionController {
     public final Inscription model;
-    private final InscriptionView view;
+    public final InscriptionView view;
     private final ActiviteController activiteController;
 
     public InscriptionController(Inscription model, InscriptionView view, ActiviteController activiteController) {
@@ -130,7 +130,7 @@ public class InscriptionController {
         view.afficherEleve(eleve);
     }
 
-    private void supprimerEleve() {
+    public void supprimerEleve() {
         String nom = view.lireNom();
         Personne eleve = model.rechercherEleve(e -> e.getNom().equalsIgnoreCase(nom));
         if (eleve != null) {

@@ -7,6 +7,7 @@ import personne.Personne;
 import java.util.Scanner;
 
 public class InscriptionView {
+    private String nomEntre;
     private static final String EMAIL_REGEX = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
     private final Scanner scanner = new Scanner(System.in);
 
@@ -97,10 +98,10 @@ public class InscriptionView {
         System.out.println(message);
     }
 
-    public String lireNom() {
+    /*public String lireNom() {
         System.out.print("Entrez le nom : ");
         return scanner.nextLine();
-    }
+    }*/
 
     public String lirePrenom() {
         System.out.print("Entrez le prénom : ");
@@ -115,5 +116,13 @@ public class InscriptionView {
     public boolean lireBoolean(String message) {
         System.out.print(message + " (oui/non) : ");
         return scanner.nextLine().equalsIgnoreCase("oui");
+    }
+
+    public void simulerEntreeNom(String nom) {
+        this.nomEntre = nom; // Stocke le nom à utiliser pour supprimer
+    }
+
+    public String lireNom() {
+        return this.nomEntre; // Retourne le nom simulé
     }
 }

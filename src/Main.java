@@ -1,5 +1,6 @@
 import FX.FormulaireAjout;
 import FX.FormulaireModification;
+import FX.FormulaireSuppression;
 import FX.ListeEleve;
 import activite.Activite;
 import activite.ActiviteController;
@@ -69,6 +70,7 @@ public class Main extends Application {
 
         private void ouvrirSuppressionInscription(Stage parentStage) {
             // Logique pour ouvrir la fenêtre de suppression
+            FormulaireSuppression.afficher(parentStage,controller);
             System.out.println("Ouvrir le formulaire pour supprimer une inscription.");
         }
 
