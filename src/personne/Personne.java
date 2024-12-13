@@ -33,14 +33,7 @@ public class Personne implements Serializable {
 
     @Override
     public String toString() {
-        return "Personne{" +
-                "nom='" + nom + '\'' +
-                ", prenom='" + prenom + '\'' +
-                ", club='" + club + '\'' +
-                ", mail='" + mail + '\'' +
-                ", paiementEnCours=" + payementEnCours +
-                ", activites=" + activites +
-                '}';
+        return nom + " " + prenom + ", " + club + ", " + mail + ", " + payementEnCours;
     }
 
     public void setActivites(List<Activite> activites) {

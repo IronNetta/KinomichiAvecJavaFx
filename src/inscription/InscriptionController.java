@@ -1,19 +1,26 @@
 package inscription;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import activite.Activite;
 import activite.ActiviteController;
+import club.Club;
+import club.ClubManager;
 import personne.Personne;
 
 public class InscriptionController {
     public final Inscription model;
     public final InscriptionView view;
     private final ActiviteController activiteController;
+    private final ClubManager clubManager;
+    private final List<Club> clubs = new ArrayList<>(List.of(Club.dataTest()));
 
     public InscriptionController(Inscription model, InscriptionView view, ActiviteController activiteController) {
         this.model = model;
         this.view = view;
         this.activiteController = activiteController;
+        this.clubManager = new ClubManager();
     }
 
 
@@ -140,5 +147,25 @@ public class InscriptionController {
         } else {
             view.afficherMessage("Aucun élève trouvé.");
         }
+    }
+
+    public List<Club> getClubs() {
+        return clubManager.getClubs();
+    }
+
+    public void ajouterClub(String nomClub) {
+        clubManager.ajouterClub(nomClub);
+    }
+
+    public List<Activite> getActivites() {
+        return activiteController.listerActivites();
+    }
+
+    public Activite rechercherActivite(String nom) {
+        return activiteController.rechercherActivite(nom);
+    }
+
+    public void ajouterActivite(Activite activite) {
+        activiteController.ajouterActivite(activite);
     }
 }

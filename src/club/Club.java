@@ -1,6 +1,8 @@
-package personne;
+package club;
 
-public class Club {
+import java.io.Serializable;
+
+public class Club implements Serializable {
     private String clubName;
 
     public Club() {
