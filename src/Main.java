@@ -57,7 +57,10 @@ public class Main extends Application {
         TableColumn<Personne, Integer> PayementCol = new TableColumn<>("Payement En Cours");
         PayementCol.setCellValueFactory(new PropertyValueFactory<>("payemmentEnCours"));
 
-        tableView.getColumns().addAll(nomCol, prenomCol, clubCol,mailCol,PayementCol);
+        TableColumn<Personne, Integer> activitesCol = new TableColumn<>("Activites");
+        activitesCol.setCellValueFactory(new PropertyValueFactory<>("activites"));
+
+        tableView.getColumns().addAll(nomCol, prenomCol, clubCol,mailCol,PayementCol,activitesCol);
         tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
         // Remplir le tableau avec les données

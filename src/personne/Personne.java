@@ -25,6 +25,7 @@ public class Personne implements Serializable {
         this.club = club;
         this.mail = mail;
         this.payementEnCours = payementEnCours;
+        this.activites = new ArrayList<>();
     }
 
     public void ajouterActivite(Activite activite) {
@@ -33,7 +34,7 @@ public class Personne implements Serializable {
 
     @Override
     public String toString() {
-        return nom + " " + prenom + ", " + club + ", " + mail + ", " + payementEnCours;
+        return nom + " " + prenom + ", " + club + ", " + mail + ", " + payementEnCours+" "+activites;
     }
 
     public void setActivites(List<Activite> activites) {
