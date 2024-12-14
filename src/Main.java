@@ -11,6 +11,7 @@ import inscription.InscriptionView;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
@@ -19,6 +20,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import personne.Personne;
 
@@ -74,21 +76,21 @@ public class Main extends Application {
         Button btnChercher = new Button("Rechercher un élève par son nom");
         Button btnModifier = new Button("Modifier une inscription");
         Button btnSupprimer = new Button("Supprimer une inscription");
-        Button btnFermer = new Button("Quitter");
 
         btnAjouter.setOnAction(event -> ouvrirFormulaireAjout(primaryStage));
         btnChercher.setOnAction(event -> ouvrirRechercheEleve(primaryStage));
         btnModifier.setOnAction(event -> ouvrirModificationInscription(primaryStage));
         btnSupprimer.setOnAction(event -> ouvrirSuppressionInscription(primaryStage));
-        btnFermer.setOnAction(event -> primaryStage.close());
 
         HBox rootButtons = new HBox(10);
-        rootButtons.getChildren().addAll(btnAjouter, btnChercher, btnModifier, btnSupprimer, btnFermer);
+        rootButtons.getChildren().addAll(btnAjouter, btnChercher, btnModifier, btnSupprimer);
 
         VBox rootPrincipal = new VBox(10);
         rootPrincipal.getChildren().addAll(rootTable, rootButtons);
 
-        Scene scene = new Scene(rootPrincipal, 900, 700);
+        Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
+
+        Scene scene = new Scene(rootPrincipal, screenBounds.getWidth()-50, screenBounds.getHeight()-50);
         primaryStage.setTitle("Gestion des Inscriptions");
         primaryStage.setScene(scene);
         primaryStage.show();
